@@ -1,0 +1,389 @@
+@charset "ISO-8859-1";
+
+*, .formContainer h3 {
+	text-align: center;
+}
+
+body {
+	margin: 0;
+	background-image: radial-gradient(rgb(236, 236, 240), black);
+	}
+
+img, .newCluster {
+	border: 2px solid lightGrey;
+}
+
+.loginContainer, .formContainer {
+	width: 70%;
+	margin: 10% auto;
+	border: 5px double black;
+	padding: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: radial-gradient(white, rgb(236, 236, 240));
+}
+
+.loginContainer, .formContainer, .formContainer h3 {
+	text-align: center;
+}
+
+.formContainer {
+	padding: 20px 0px;
+}
+
+.fileUpload {
+	background-color: gainsboro;
+}
+
+.loginContainer {
+	justify-content: space-evenly;
+}
+
+.loginContainer img {
+	height: 100px;
+	border: none;
+}
+
+.loginContainer section {
+	margin: 5%
+}
+
+label {
+	display: block;
+	text-align: end;
+	margin: 10px;
+}
+
+.verticalLine {
+	margin: 0px;
+	width: 0;
+	height: 200px;
+	color: black;
+	border:1px solid black;
+}
+
+button, .upcomingArea a {
+	padding: 3px 25px
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.navButton {
+	padding: 10px 25px;
+}
+
+h2 a {
+}
+
+.navButton:hover, h2 a:hover, 
+.clusterCard h3 a:hover, 
+.photoUserNameCombo h3 a:hover,
+aside h3 a:hover {
+	background-color: gainsboro;
+	border-radius: 15px;
+}
+
+header {
+	padding: 2% 5%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 4px double black;
+	height: 2em;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-image: radial-gradient(white, rgb(236, 236, 240));
+	clip-path: margin-box;
+	z-index: +2;
+}
+
+nav {
+	display: flex;
+	align-items: center;
+	margin: auto;
+	justify-content: space-between;
+	flex: 2;
+}
+
+nav .verticalLine {
+	height: 25px;
+}
+
+h2 {
+	flex: 3;
+	text-align: start;
+}
+
+.clusterCard {
+	width: 90%;
+	height: 22em;
+	border: 1px solid black;
+	margin: 25px auto;
+	padding: 0px;
+	background-image: radial-gradient(white, rgb(236, 236, 240));
+	box-shadow: 0 0 5px grey;
+}
+
+.contentContainer {
+	display: flex;
+	align-items: center;
+	height: 70%;
+	margin: 5px 5px;
+	padding: 0;
+	overflow: auto;
+}
+
+.clusterCardContent {
+	max-height: 88%;
+	max-width: 24%;
+	margin: 0px 5px; 
+	transition: .2s ease;
+}
+
+.clusterCardContent:hover {
+	max-height: 110%;
+	max-width: 35%;
+	border-radius: 1%;
+	box-shadow: 0 0 5px black;
+}
+
+.profilePhotoSmall {
+ 	clip-path: circle(38%);
+ 	height: 3em;
+}
+ 
+.photoUserNameCombo {
+ 	display: flex;
+ 	align-items: top;
+ 	text-align: start;
+ 	justify-content: space-between;
+}
+
+.photoUserNameCombo .editButton{
+	position: relative;
+	font-size: .5em;
+	top: 0;
+	height: 70%;
+}
+
+.photoUserNameCombo h3 {
+	flex: 9;
+	text-align: start;
+}
+
+h3 {
+	margin: 10px;
+	text-align: start;
+}
+
+main {
+	padding-top: 4.5em;
+}
+
+.userInfoArea {
+	display: flex;
+	align-items: center;
+	background-image: radial-gradient(white, rgb(236, 236, 240));
+}
+
+.userInfoArea img{
+	height: 12em;
+	border: 1px solid black;
+	clip-path: circle(30%);
+}
+
+.userInfoArea aside {
+	width: 50%;	
+	margin: 1%;
+	flex: 6;
+}
+
+.userInfoArea aside h5 {
+	font-size: 1.2em;
+}
+
+.userInfoArea aside *{
+	margin: 20px 0px;
+	text-align: start;
+}
+
+.editButton {
+	width: 2em;
+	padding: 1em;
+	position: fixed;
+	top: 5em;
+	right: 0px;
+	border: 1px solid grey;
+	background-color: rgb(236, 236, 238);	
+}
+
+.editButton:hover {
+	box-shadow: 0 0 5px black;
+}
+
+.deleteButton button {
+	background-color: rgb(228, 108, 95);
+	margin: 2.5em 3em;
+}
+
+.editButton, .deleteButton button {
+	border-radius: 5%;
+}
+
+aside h1 {
+	font-size: 2.1em;
+}
+
+.contentArea {
+	display: flex;
+	align-items: top;
+}
+
+.contentArea * {
+	margin: 2%;
+}
+
+.clusterArea {
+	flex:5;
+}
+
+.upcomingArea {
+	flex:2;
+}
+
+.clusterArea h3, .upcomingArea h3{
+	font-size: 1.6em;
+}
+
+.clusterGridContainer {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	gap: 15px;
+	max-height: 65%;
+	max-width: 98%;
+	margin: auto;
+	padding: 30px;
+}
+
+.clusterGridContainer {
+	text-align: center;
+}
+
+.clusterGridContainer img {
+	max-height: 20em;
+	max-width: 100%;
+	margin: auto;
+	transition: .2s ease;
+}
+
+.clusterThumbnail {
+	max-height: 20%;
+	max-width: 35%;
+	padding: 0px;
+}
+
+.clusterThumbnail img {
+	max-height: 70%;
+	max-width: 100%;
+	transition: 0.2s ease;
+}
+
+.clusterThumbnail img:hover {
+	max-height: 73%;
+	max-width: 110%;
+	box-shadow: 0 0 5px black;
+}
+
+.contentArea section h3 {
+	text-align: center;
+}
+
+.profileDataContainer {
+	display: flex;
+	align-items: top;
+	justify-content: space-evenly;
+}
+
+.clusterThumbnail~h5, .newCluster~h5 {
+	font-size: 1.2em;
+	margin: 10px auto;
+}
+
+.newCluster {
+	font-size: 500%;
+	border-radius: 100em;
+	padding: 0px 20px;
+}
+
+.buttonHover {	
+	transition: .2s ease;
+}
+
+.newCluster:hover, .submitButton:hover,
+.noMarginSubmit:hover, 
+.clusterGridContainer img:hover {	
+	box-shadow: 0 0 5px black;
+}
+
+.buttonHover:hover {
+	font-size: 1.05em;
+	size: 1.1em;
+}
+
+.newCluster~h5, .newCluster, .upcomingArea a {
+	background-color: grey;
+	color: lightGrey;
+}
+
+.newCluster~h5 a {
+	color: lightGrey;
+}
+
+.upcomingArea a, .newCluster~h5 {
+	border: 1px solid lightGrey;
+	border-radius: 5%;
+	max-width: 50%;
+}
+
+.littleFormContainer {
+	display: flex;
+	align-items: center;
+	margin: auto;
+	height: 3em;
+}
+
+.littleFormContainer * {
+	flex: 1;
+	text-align: center;
+	margin: 0px;
+}
+
+.submitButton {
+	margin: 24px;
+}
+
+li {
+	text-align: start;
+	font-size: 1.4em;
+	padding: 5px;
+}
+
+.emptyBox {
+	height: 5em;
+	width: 5em;
+}
+
+.error {
+	color: red;
+}
+
+
+
+
+
