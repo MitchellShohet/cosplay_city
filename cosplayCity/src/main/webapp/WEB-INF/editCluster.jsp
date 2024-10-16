@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title><c:out value="${cluster.getTitle()} | Edit"></c:out></title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -42,20 +42,21 @@
 		</section>
 		<hr>
 		<section class="formContainer">
-			<form:form action="/processEditCluster/${cluster.getId()}" method="post" modelAttribute="cluster"> 
+			<form:form action="/processEditCluster/${cluster.getId()}" method="post" modelAttribute="cluster" enctype="multipart/form-data"> 
 				<h3>Edit Cluster</h3>
-				<form:errors path="title" class="error"></form:errors>
 				<form:label path="title">Title:
 					<form:input path="title"/>
+					<form:errors path="title" class="error"></form:errors>
 				</form:label>
-				<form:errors path="description" class="error"></form:errors>
 				<form:label path="description">Description:
 					<form:textarea path="description" maxlength="240" cols="36"/>
+					<form:errors path="description" class="error"></form:errors>
 				</form:label>
-				<form:errors path="content" class="error"></form:errors>
-				<label>Reupload Photos: 
+				<label value="photosInput">Reupload Photos: 
 					<input type="file" name="file" multiple="true" class="fileUpload"/>
+					<form:errors path="content" class="error"></form:errors>
 				</label>
+				<p>*Note* Please ensure photos have unique filenames.</p>
 				<button type="submit">Submit</button>
 			</form:form>
 		</section>

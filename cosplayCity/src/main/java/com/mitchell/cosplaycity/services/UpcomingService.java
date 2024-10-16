@@ -11,12 +11,16 @@ import com.mitchell.cosplaycity.repositories.UpcomingRepository;
 
 @Service
 public class UpcomingService {
+	
+	//Repository and other model Services connections
 
 	@Autowired
 	UpcomingRepository upcomingRepository;
 	
 	@Autowired
 	UserService userService;
+	
+	//Upcoming functions
 	
 	public List<Upcoming> findAll() {
 		List<Upcoming> allUpcomings = upcomingRepository.findAll();
@@ -44,16 +48,13 @@ public class UpcomingService {
 	public Upcoming update(Long upcomingId, Upcoming newUpcoming, BindingResult result) {
 		Optional<Upcoming> optionalUpcoming = upcomingRepository.findById(upcomingId);
 		if(optionalUpcoming.isEmpty()) {
-			System.out.println("nope");
 			return null;
 		}
 		User user = userService.findById(newUpcoming.getUser().getId());
 		newUpcoming.setId(upcomingId);
-		for(Upcoming eachUpcoming : user.getUpcomings()) {
+		for(Upcoming eachUpcoming : user.getUpcomings()) { //loops through the user's upcoming list, replaces the updated one with new data
 			if(eachUpcoming.getId() == upcomingId) {
 				eachUpcoming.setName(newUpcoming.getName());
-				System.out.println(eachUpcoming.getId());
-				System.out.println(newUpcoming.getName());
 			}
 		}
 		newUpcoming.setUser(user);

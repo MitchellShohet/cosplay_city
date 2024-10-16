@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Register | Cosplay City</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
 		<hr class="verticalLine">
 		<section>
 			<h1>Create Your Account</h1>
-			<h4 class="error"><c:out value="${loginNeeded}"></c:out></h3>
+			<h3 class="error"><c:out value="${loginNeeded}"></c:out></h3>
 			<form:form action="/processRegister" method="post" modelAttribute="newUser">
 				<form:errors path="userName" class="error"></form:errors>
 				<form:label path="userName"> User Name:

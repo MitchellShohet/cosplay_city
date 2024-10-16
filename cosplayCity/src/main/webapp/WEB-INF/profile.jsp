@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title><c:out value="@${profile.getUser().getUserName()} | Profile"></c:out></title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -39,7 +39,11 @@
 				</c:if>
 			</aside>
 			<c:if test="${loggedInUser.getId() == profile.getUser().getId()}">
-				<a class="editButton" href="/editProfile/${profile.getUser().getId()}"><hr><hr><hr></a>
+				<a class="editButton" href="/editProfile/${profile.getUser().getId()}">
+					<span style="margin: 7px 0px;"></span>
+					<span style="margin: 7px 0px;"></span>
+					<span style="margin: 7px 0px;"></span>
+				</a>
 			</c:if>
 		</section>
 		<hr>
@@ -48,13 +52,15 @@
 				<h3>Clusters</h3>
 				<div class="clusterGridContainer">
 					<c:forEach var="eachCluster" items="${profile.getUser().getClusters()}">
-						<div>
-							<a href="/clusterPage/${eachCluster.getId()}" class="clusterThumbnail"><img alt="Thumbnail Image for ${eachCluster.getTitle()} Cluster" src="/${eachCluster.getContent().get(0)}"></a> 
+						<div class="clusterThumbnail">
+							<a href="/clusterPage/${eachCluster.getId()}">
+								<img alt="Thumbnail Image for ${eachCluster.getTitle()} Cluster" src="/${eachCluster.getContent().get(0)}" class="testImgHover">
+							</a> 
 							<h5><c:out value="${eachCluster.getTitle()}"></c:out></h5>
 						</div>
 					</c:forEach> 
 					<c:if test="${loggedInUser.getId() == profile.getUser().getId()}">
-						<div class="buttonHover">
+						<div>
 							<a href="/newCluster" class="newCluster">+</a> 
 							<h5><a href="/newCluster">Add New</a></h5>
 						</div>
@@ -69,7 +75,7 @@
 						<li><c:out value="${eachUpcoming.getName()}"></c:out></li>
 					</c:forEach>
 				</ul>
-				<c:if test="${profile.getUser().getUpcomings() == null}">
+				<c:if test="${profile.getUser().getUpcomings().isEmpty()}">
 					<p><c:out value="${profile.getUser().getUserName()} doesn't have any upcoming projects!"></c:out></p>
 				</c:if>		
 				<c:if test="${loggedInUser.getId() == profile.getUser().getId()}">

@@ -21,6 +21,8 @@ import jakarta.validation.constraints.Size;
 @Table(name = "clusters")
 public class Cluster {
 	
+	//Class attributes
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -42,6 +44,8 @@ public class Cluster {
     private Date createdAt;
     private Date updatedAt;
     
+    //Generators
+    
     public Cluster() {};
     
 	public Cluster(
@@ -54,6 +58,9 @@ public class Cluster {
 		this.content = content;
 		this.user = user;
 	}
+	
+	//Getters and Setters 
+	
 	public Long getId() {
 		return id;
 	}
@@ -97,6 +104,8 @@ public class Cluster {
 		this.updatedAt = updatedAt;
 	}
     
+	//createdAt and updatedAt logic
+	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -107,5 +116,4 @@ public class Cluster {
 		this.updatedAt = new Date();
 	}
     
-
 }

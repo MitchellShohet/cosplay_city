@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title><c:out value="@${loggedInUser.getUserName()} | New Cluster"></c:out></title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
 				<img alt="${loggedInUser.getUserName()}'s profile photo" src="/${loggedInUser.getProfile().getProfilePhoto()}">
 			</c:if>
 			<c:if test="${loggedInUser.getProfile().getProfilePhoto() == null}">
-				<a href="/editProfile/${cluster.getUser().getProfile().getUser().getId()}"><img alt="Cosplay City Generic Profile Photo" src="/images/generic_profile_photo.jpg"></a>
+				<a href="/editProfile/${loggedInUser.getProfile().getUser().getId()}"><img alt="Cosplay City Generic Profile Photo" src="/images/generic_profile_photo.jpg"></a>
 			</c:if>
 			<aside>
 				<h1><c:out value="${loggedInUser.getUserName()}"></c:out></h1>
@@ -51,6 +51,7 @@
 					<input type="file" name="file" multiple="true" class="fileUpload"/>
 					<form:errors path="content" class="error"></form:errors>
 				</label>
+				<p>*Note* Please ensure photos have unique filenames.</p>
 				<button type="submit" class="submitButton">Submit</button>
 			</form:form>
 		</section>

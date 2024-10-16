@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title><c:out value="${upcoming.getName()} | Edit"></c:out></title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -24,13 +24,14 @@
 	</header>
 	<main class="formContainer">
 		<c:if test="${loggedInUser.getId() == upcoming.getUser().getId()}">
-			<a class="editButton" href="/editProfile/${upcoming.getUser().getId()}"><hr><hr><hr></a>
+			<a class="editButton" href="/editProfile/${upcoming.getUser().getId()}">
+				<span style="margin: 7px 0px;"></span>
+				<span style="margin: 7px 0px;"></span>
+				<span style="margin: 7px 0px;"></span>
+			</a>
 		</c:if>
 		<div>
 			<h3>Edit Upcoming Project:</h3>
-			<c:out value="${upcoming.getId()}"></c:out>
-			<c:out value="${upcoming.getUser().getId()}"></c:out>
-			<c:out value="${upcoming.getName()}"></c:out>
 			<form:form action="/processEditUpcoming/${upcoming.getId()}" method="post" modelAttribute="upcoming"> 
 				<form:label path="name">
 					<form:input path="name"/>

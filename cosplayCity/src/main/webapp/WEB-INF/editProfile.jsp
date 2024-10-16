@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title><c:out value="@${profile.getUser().getUserName()} | Edit"></c:out></title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>

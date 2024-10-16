@@ -14,9 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FilesService {
-	private final Path root = Paths.get("uploads");
+	private final Path root = Paths.get("uploads"); //defines path source for photo storage in application files
 	
-	public void init() throws IOException {
+	public void init() throws IOException { //creates uploads folder if it doesn't exist
 		if(! Files.exists(root)) {
 			try {
 				Files.createDirectory(root);
@@ -26,9 +26,9 @@ public class FilesService {
 		}
 	}
 	
-	public String save(MultipartFile file) {
+	public String save(MultipartFile file, String userName, String clusterTitle) { //receives a user uploaded photo, saves to the uploads folder, returns path as a string
 		try {
-			Path savePath = this.root.resolve(file.getOriginalFilename());
+			Path savePath = this.root.resolve(userName + clusterTitle + file.getOriginalFilename());
 			Files.copy(file.getInputStream(), savePath);
 			return savePath.toString();
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class FilesService {
 		}
 	}
 	
-	public Resource load(String filename) {
+	public Resource load(String filename) { //receives a path as a string, retrieves and returns the photo from the path
 		try {
 			Path file = root.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
@@ -50,6 +50,23 @@ public class FilesService {
 		}
 		catch(MalformedURLException e) {
 			throw new RuntimeException("Error: " + e.getMessage());
+		}
+	}
+	
+	public boolean checkReupload(String filename) { //receives a path as a string, retrieves and returns the photo from the path
+		try {
+			Path file = root.resolve(filename);
+			Resource resource = new UrlResource(file.toUri());
+			
+			if(resource.exists() || resource.isReadable()) {
+				return true;
+			} 
+			else {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			return false;
 		}
 	}
 

@@ -83,7 +83,6 @@ public class UserController {
 		model.addAttribute("newUser", new User());
 		model.addAttribute("loginNeeded", "Must be logged in to view.");
 		return "register.jsp";
-		
 	}
 	
 }

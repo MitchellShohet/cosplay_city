@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,6 +19,8 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "upcomings")
 public class Upcoming {
+	
+	//Class attributes
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,6 +37,8 @@ public class Upcoming {
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
+    
+    //Generators
 	
 	public Upcoming() {}
 	
@@ -44,6 +50,8 @@ public class Upcoming {
 		this.user = user;
 		this.name = name;
 	}
+	
+	//Getters and Setters
 
 	public Long getId() {
 		return id;
@@ -84,4 +92,17 @@ public class Upcoming {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	//createdAt and updatedAt logic
+	
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+		 
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
+	
 }

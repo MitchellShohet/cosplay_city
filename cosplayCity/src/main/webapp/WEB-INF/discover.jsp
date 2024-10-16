@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Home | Cosplay City</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<script type="text/javascript" src="/js/script.js"></script>
 </head>
-<body>
+<body onload="showStartingSlides()">
 	<header>
 		<h2><a href="/discover">Cosplay City</a></h2>
 		<nav>
@@ -30,18 +31,33 @@
 						<img alt="${eachCluster.getUser().getUserName()}'s profile photo" src="/${eachCluster.getUser().getProfile().getProfilePhoto()}" class="profilePhotoSmall">
 					</c:if>
 					<c:if test="${eachCluster.getUser().getProfile().getProfilePhoto() == null}">
-						<a href="/editProfile/${profile.getUser().getId()}"><img alt="Cosplay City Generic Profile Photo" src="/images/generic_profile_photo.jpg" class=></a>
+						<a href="/editProfile/${profile.getUser().getId()}"><img alt="Cosplay City Generic Profile Photo" src="/images/generic_profile_photo.jpg"></a>
 					</c:if>
 					<h3><a href="/profile/${eachCluster.getUser().getId()}"><c:out value="@${eachCluster.getUser().getUserName() }"></c:out></a></h3>
 					<c:if test="${loggedInUser.getId() == eachCluster.getUser().getId()}">
-						<a class="editButton" href="/editCluster/${eachCluster.getId()}"><hr><hr><hr></a>
+						<a class="editButton" href="/editCluster/${eachCluster.getId()}">
+							<span style="margin: 3px 0px;"></span>
+							<span style="margin: 3px 0px;"></span>
+							<span style="margin: 3px 0px;"></span>
+						</a>
 					</c:if>
 				</div>
 				<h3><a href="/clusterPage/${eachCluster.getId()}"><c:out value="${eachCluster.getTitle() }"></c:out></a></h3>
 				<hr>
 				<div class="contentContainer">
 					<c:forEach var="eachContent" items="${eachCluster.getContent() }">
-						<img alt="Image of ${eachCluster.getUser().getUserName()}'s ${eachCluster.getTitle()} cosplay" src="/${eachContent }" class="clusterCardContent">
+						<img alt="Image of ${eachCluster.getUser().getUserName()}'s ${eachCluster.getTitle()} cosplay" src="/${eachContent}" onclick="openModal(this)" class="clusterCardContent content${allClusters.indexOf(eachCluster)}">
+						<div id="myModal" class="modal">
+							<span class="close" onclick="closeModal()">&times;</span>
+							<img class="modalContent">
+						</div>
+					</c:forEach>
+					<a class="prev" onclick="plusSlides(-1, ${allClusters.indexOf(eachCluster)})">&#10094;</a>
+  					<a class="next" onclick="plusSlides(1, ${allClusters.indexOf(eachCluster)})">&#10095;</a>
+				</div>
+				<div style="text-align:center;">
+					<c:forEach var="eachContent" items="${eachCluster.getContent() }">
+						<span class="dot dots${allClusters.indexOf(eachCluster)}"></span>
 					</c:forEach>
 				</div>
 			</div>

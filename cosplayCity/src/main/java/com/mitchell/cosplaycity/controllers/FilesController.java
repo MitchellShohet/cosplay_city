@@ -16,7 +16,7 @@ public class FilesController {
 	@Autowired
 	private FilesService filesService;
 	
-	@GetMapping("/uploads/{filename:.+}")
+	@GetMapping("/uploads/{filename:.+}") //path to retrieve photo from upload folder
 	@ResponseBody
 	public ResponseEntity<Resource> getFile(
 			@PathVariable String filename) {

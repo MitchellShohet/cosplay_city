@@ -16,8 +16,12 @@ import com.mitchell.cosplaycity.repositories.UserRepository;
 @Service
 public class UserService {
 	
+	//Repository connection
+	
 	@Autowired
 	private UserRepository userRepository;
+	
+	//User functions
 	
 	public List<User> findAll() {
 		List<User> allUsers = userRepository.findAll();
@@ -34,6 +38,7 @@ public class UserService {
 	}
 	
 	public User register(User newUser, BindingResult result) {
+		//validation for registering a new user
 		Optional<User> optionalUser = userRepository.findByEmailIs(newUser.getEmail());	
 		if(optionalUser.isPresent()) {
 			result.rejectValue("email", "unique", "An account is already associated with that Email.");
@@ -44,15 +49,17 @@ public class UserService {
 		if(result.hasErrors()) {
 			return null;
 		}
-		String passwordHashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
+		//if the registration is valid, move on to registration logic
+		String passwordHashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()); //hashing password for security
 		newUser.setPassword(passwordHashed);
-		Profile profile = new Profile(newUser);
-		newUser.setProfile(profile);
+		Profile profile = new Profile(newUser); //creates a new profile and establishes the new profile's user as the new user
+		newUser.setProfile(profile); //establishes the new user's profile as the new profile
 		userRepository.save(newUser);
 		return newUser;
 	}
 	
 	public User login(UserLogin userLogin, BindingResult result) {
+		//validation for logging in to an account
 		Optional<User> optionalUser = userRepository.findByEmailIs(userLogin.getEmail());
 		if(optionalUser.isEmpty()) {
 			result.rejectValue("email", "empty", "Invalid Email or Password.");
@@ -65,6 +72,7 @@ public class UserService {
 		if(result.hasErrors()) {
 			return null;
 		}
+		//if the login is valid, return the logged in user
 		return newUser;
 	}
 	

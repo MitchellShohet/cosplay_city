@@ -12,5 +12,4 @@ public interface ClusterRepository extends CrudRepository<Cluster, Long> {
 	
 	List<Cluster> findAll();
 	
-
 }

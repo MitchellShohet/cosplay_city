@@ -15,6 +15,8 @@ import com.mitchell.cosplaycity.repositories.ProfileRepository;
 @Service
 public class ProfileService {
 	
+	//Repository and other model Services connections
+	
 	@Autowired
 	private ProfileRepository profileRepository;
 	
@@ -23,6 +25,8 @@ public class ProfileService {
 	
 	@Autowired
 	private UserService userService;
+	
+	//Profile functions
 	
 	public List<Profile> findAll() {
 		return profileRepository.findAll();
@@ -40,7 +44,7 @@ public class ProfileService {
 	public Profile update(Profile profile, Long userId, MultipartFile photo, BindingResult result) {
 		User user = userService.findById(userId);
 		profile.setUser(user);
-		profile.setProfilePhoto(filesService.save(photo));
+		profile.setProfilePhoto(filesService.save(photo, user.getUserName(), "profilePhoto"));
 		profile.setId(user.getProfile().getId());
 		profileRepository.save(profile);
 		return profile;

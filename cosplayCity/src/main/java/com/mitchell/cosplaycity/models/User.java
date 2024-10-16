@@ -23,6 +23,8 @@ import jakarta.validation.constraints.Size;
 @Table(name="users")
 public class User {
 	
+	//Class attributes
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -57,6 +59,8 @@ public class User {
     private Date createdAt;
     private Date updatedAt;
     
+    //Generators
+    
     public User() {}
     
 	public User(
@@ -69,6 +73,8 @@ public class User {
 		this.password = password;
 		this.confirmPassword = confirmPassword;
 	}
+	
+	//Getters and Setters
 	    
 	public Long getId() {
 		return id;
@@ -149,6 +155,8 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	//createdAt and updatedAt logic
 
 	@PrePersist
 	protected void onCreate() {

@@ -1,7 +1,7 @@
 package com.mitchell.cosplaycity.controllers;
 
+import java.util.Collections;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,14 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.mitchell.cosplaycity.models.Cluster;
 import com.mitchell.cosplaycity.models.User;
 import com.mitchell.cosplaycity.services.ClusterService;
-
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -28,11 +25,12 @@ public class ClusterController {
 	@Autowired
 	private ClusterService clusterService;
 	
-	@GetMapping("/discover")
+	@GetMapping("/discover") //Landing page, displays clusters from all users in digestible cards
 	public String discover(
 			Model model,
 			HttpSession session) {
 		List<Cluster> allClusters = clusterService.findAll();
+		Collections.reverse(allClusters); //organizes clusters with most recent first
 		model.addAttribute("allClusters", allClusters);
 		model.addAttribute("session", session);
 		return "discover.jsp";
@@ -60,7 +58,7 @@ public class ClusterController {
 			return "newCluster.jsp";
 		}
 		Cluster cluster = clusterService.saveCluster(newCluster, (User)session.getAttribute("loggedInUser"), rawContent, result);
-		return "redirect:/profile/" + newCluster.getUser().getId();
+		return "redirect:/profile/" + cluster.getUser().getId();
 	}
 	
 	@GetMapping("/clusterPage/{clusterId}")
@@ -93,13 +91,14 @@ public class ClusterController {
 			@Valid
 			@ModelAttribute("cluster") Cluster cluster,
 			BindingResult result,
+			@RequestParam("file") List<MultipartFile> rawContent,
 			HttpSession session) {
 		if(result.hasErrors()) {
 			cluster.setId(clusterId);
 			model.addAttribute("cluster", cluster);			
 			return "editCluster.jsp";
 		}
-		Cluster processedCluster = clusterService.update(clusterId, cluster, result);
+		Cluster processedCluster = clusterService.update(clusterId, cluster, rawContent, result);
 		return "redirect:/clusterPage/" + processedCluster.getId();
 	}
 	

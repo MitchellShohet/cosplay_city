@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title><c:out value="${cluster.getTitle()} | @${cluster.getUser().getUserName()}"></c:out></title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<script type="text/javascript" src="/js/script.js"></script>
 </head>
 <body>
 	<header>
@@ -35,14 +36,23 @@
 				<p><c:out value="${cluster.getDescription()}"></c:out>
 			</aside>
 			<c:if test="${loggedInUser.getId() == cluster.getUser().getId()}">
-				<a class="editButton" href="/editCluster/${cluster.getId()}"><hr><hr><hr></a>
+				<a class="editButton" href="/editCluster/${cluster.getId()}">
+					<span style="margin: 7px 0px;"></span>
+					<span style="margin: 7px 0px;"></span>
+					<span style="margin: 7px 0px;"></span>
+				</a>
 			</c:if>
 		</section>
 		<hr>
 		<section class="clusterGridContainer">
 			<c:forEach var="eachContent" items="${cluster.getContent() }">
-				<img alt="Image of ${cluster.getUser().getUserName()}'s ${cluster.getTitle()} cosplay" src="/${eachContent }">
+				<img alt="Image of ${cluster.getUser().getUserName()}'s ${cluster.getTitle()} cosplay" src="/${eachContent}" onclick="openModal(this)" class="clusterPageImg">
+				<div id="myModal" class="modal">
+					<span class="close" onclick="closeModal()">&times;</span>
+					<img class="modalContent" id="modalContent">
+				</div>
 			</c:forEach>
 		</section>
+	</main>
 </body>
 </html>

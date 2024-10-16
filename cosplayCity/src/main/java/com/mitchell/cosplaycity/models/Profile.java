@@ -19,6 +19,8 @@ import jakarta.validation.constraints.Size;
 @Table(name="profiles")
 public class Profile {
 	
+	//Class attributes
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -38,11 +40,15 @@ public class Profile {
     private Date createdAt;
     private Date updatedAt;
     
+    //Generators
+        
     public Profile() {}
     
     public Profile(User user) {
     	this.user = user;
     }
+    
+	//Getters and Setters
 
 	public Long getId() {
 		return id;
@@ -107,6 +113,8 @@ public class Profile {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	//createdAt and updatedAt logic
 	
 	@PrePersist
 	protected void onCreate() {

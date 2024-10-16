@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login | Cosplay City</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>

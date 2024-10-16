@@ -1,5 +1,7 @@
 package com.mitchell.cosplaycity.controllers;
 
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mitchell.cosplaycity.models.Cluster;
 import com.mitchell.cosplaycity.models.Profile;
 import com.mitchell.cosplaycity.models.Upcoming;
 import com.mitchell.cosplaycity.models.User;
@@ -19,6 +22,7 @@ import com.mitchell.cosplaycity.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.AssertFalse.List;
 
 @Controller
 public class ProfileController {
@@ -35,6 +39,7 @@ public class ProfileController {
 			@PathVariable ("profileId") Long profileId
 			) {
 		Profile profile = profileService.findById(profileId);
+		Collections.reverse(profile.getUser().getClusters()); //Displays clusters with newest first *FOR NOW USER REORDERING ADDED LATER*
 		model.addAttribute(profile);
 		return "profile.jsp";
 	}
